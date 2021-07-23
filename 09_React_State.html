@@ -1,0 +1,146 @@
+<!--|----------------------------------------------
+Daniel OUATTARA- daniel.ouattara_AT_gmx.com
+11 07 2020
+React Tutorial : https://www.w3schools.com/react/
+-------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React State</title>
+</head>
+<body>
+
+    <h1>React State.</h1><hr/>
+
+
+<!-- React components has a built-in 'state' object.
+
+The 'state' object is where you store property values that 
+belongs to the component.
+
+When the state object changes, the component re-renders.
+
+
+Creating the state Object
+==========================
+
+The state object is initialized in the constructor: 
+
+Example: Specify the state object in the constructor method:
+-------                                                       -->
+      <script>
+          class Car extends React.Component {
+              constructor (props) {
+                  super(props)
+                  this.state = {
+                      brand: "Ford",
+                      model: "Mustang",
+                      year: 1974
+                  }
+              }
+
+              render() {
+                  return(
+                      <div>
+                        <h2> My car !</h2>
+                      </div>
+                  );
+              }
+          }
+          
+          ReactDOM.render( < Car />, document.getElementById('root'));
+     
+      </script>
+      
+<!-- The state object can contain as many properties as you like:
+
+
+Using the state Object
+=======================
+
+Refer to the state object anywhere in the component by using 
+the 'this.state.propertyname' syntax:
+
+Example: Refer to the state object in the render() method:     -->
+
+      <script>
+          class Car2 extends React.Component {
+              constructor(props) {
+                  super(props);
+                  this.state = {
+                      brand: "Ford",
+                      model: "Mustang",
+                      color: "red" ,
+                      year: 1974
+                  }
+               }
+            
+              render () {
+                  return (
+                      <div>
+                        <h2> My car is a { this.state.brand} </h2>
+                        <p>It is a { this.state.color} {this.state.model }
+                          from {this.state.year} </p>
+                      </div>
+                  );
+              }
+          }
+
+          ReactDOM.render( < Car2 />, document.getElementById('root'));
+           
+      </script>
+
+
+<!-- Changing the state Object
+===============================
+
+To change a value in the 'state' object, use the 'this.setState()' method.
+
+When a value in the 'state' object changes, the component will re-render, 
+meaning that the output will change according to the new value(s). -->
+
+      <script>
+
+          class Car3 extends React.Component {
+              constructor(props) {
+                  super(props);
+                  this.state = {
+                      brand: "Ford",
+                      model: "Mustang",
+                      color: "red",
+                      year: 1974
+                  }
+              }
+
+              changeColor = () => {
+                  this.setState({color: "green"});
+              }
+
+              render () {
+                  return (
+                      <div>
+                        <h2> My car is a { this.state.brand} </h2>
+
+                        <p>It is a { this.state.color} {this.state.model }  from {this.state.year} </p>
+
+                        <button type="button" onClick= {this.changeColor}>click</button>
+                      </div>
+                  );
+              }
+          }
+
+          ReactDOM.render(<Car3 />, document.getElementById('root'));
+
+
+ /* Always use the setState() method to change the state object, 
+ it will ensure that the component knows its been updated and 
+ calls the render() method (and all the other lifecycle methods). */
+
+      </script>
+
+
+</body>
+</html>

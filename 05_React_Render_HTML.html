@@ -1,0 +1,107 @@
+<!--|----------------------------------------------
+Daniel OUATTARA- daniel.ouattara_AT_gmx.com
+08 07 2020
+React Tutorial : https://www.w3schools.com/react/
+-------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Render HTML</title>
+</head>
+
+<body>
+
+  <h1>React Render HTML.</h1>
+  <hr />
+
+  <!-- React's goal is in many ways to render HTML in a web page.
+React renders HTML to the web page by using a function called 
+'ReactDOM.render()'.
+
+The Render Function
+====================
+The 'ReactDOM.render()' function takes two arguments: 'HTML code' 
+and an 'HTML element'.
+
+The purpose of this function is to display the 'specified HTML code' 
+inside the 'specified HTML element'. 
+
+> Display a paragraph inside the "root" element:
+_______________________________________________________________
+ReactDOM.render(<p>Hello</p>, document.getElementById('root'));
+
+The result is displayed in the <div id="root"> element:
+__________________________
+<body>
+  <div id="root"></div>
+</body>
+
+
+The HTML Code
+==============
+
+The HTML code in this tutorial uses JSX which allows to write HTML tags
+inside the JavaScript code, you will learn more about JSX in the next 
+chapter.
+
+Example: Create a variable that contains HTML code and display it in 
+-------  the root node:
+
+_____________________
+const myelement = (
+  <table>
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td>$100</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td>$80</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Sum</td>
+      <td>$180</td>
+    </tr>
+  </tfoot>
+</table> 
+);
+
+ReactDOM.render(myelement, document.getElementById('root'));
+
+
+The Root Node
+=============
+
+The root node is the HTML element where you want to display the result.
+It is like a container for content managed by React.
+It does NOT have to be a <div> element and it does NOT have to have 
+the id='root':
+
+Example: The root node can be called whatever you like:
+-------
+________________________________
+<body>
+  <header id="sandy"></header>
+</body>
+
+
+Display the result in the <header id="sandy"> element:
+_________________________________________________________________
+ReactDOM.render(<p>Hallo</p>, document.getElementById('sandy'));               -->
+
+</body>
+
+</html>

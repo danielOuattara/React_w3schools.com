@@ -1,0 +1,264 @@
+<!--|----------------------------------------------
+Daniel OUATTARA- daniel.ouattara_AT_gmx.com
+08 07 2020
+React Tutorial : https://www.w3schools.com/react/
+-------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Components</title>
+</head>
+<body>
+
+    <h1>React Components.</h1><hr/>
+
+<!-- Components are like functions that return HTML elements.
+
+
+React Components
+=================
+
+Components are independent and reusable bits of code. They serve the same 
+purpose as JavaScript functions, but work in isolation and returns HTML 
+via a render function.
+
+Components come in two types:
+  > Class components
+  > Function components
+
+In this tutorial we will concentrate on 'Class components'.
+
+
+Create a Class Component
+========================
+
+When creating a React component, the component's name must start with 
+an upper case letter.
+
+The component has to include the 'extends React.Component' statement, 
+which creates an inheritance to 'React.Component', and gives your 
+component access to "React.Component's" functions.
+
+The component also requires a 'render()' method, this method returns HTML.
+
+Example: Create a Class component called Car                           
+--------                                                              -->
+
+    <script>
+
+    class Car extends React.Component {
+      render() {
+         return <h2>Hi, I am a Car!</h2>;
+      }
+    }
+
+    </script>
+
+
+<!-- Now your React application has a component called Car, which returns 
+a <h2> element.
+
+To use this component in your application, use similar syntax as 
+normal HTML: <Car />
+
+Example: Display the Car component in the "place_Car" element:
+-------                                                             -->
+      <script>
+
+         ReactDOM.render(<Car />, document.getElementById('place_Car'));
+
+      </script>
+
+
+<!-- Create a Function Component
+=================================
+
+Here is the same example as above, but created using 
+a 'Function component' instead.
+
+A 'Function component' also returns HTML, and behaves pretty much 
+the same way as a 'Class component', but 'Class components' have 
+some additions, and will be preferred in this tutorial.
+
+Example: Create a Function component called Car2
+--------                                                       -->
+      <script>
+         function Car2() {
+            return <h2>Hi, I am also a Car!</h2>;
+         }
+        </script>
+
+
+<!-- Once again your React application has a Car2 component.
+
+Refer to the Car2 component as normal HTML (except in React, 
+components must start with an upper case letter):
+
+Example: Display the Car component in the "place_Car2" element:
+--------                                                       -->
+
+      <script>
+         ReactDOM.render(<Car2 />, document.getElementById('place_Car2'));
+      </script>
+
+
+<!-- Component Constructor
+===========================
+
+If there is a 'constructor()' function in your component, this function
+will be called when the component gets initiated.
+
+The constructor function is where you initiate the component's 
+properties.
+
+In React, component's properties should be kept in an object called 'state'.
+
+You will learn more about 'state' later in this tutorial.
+
+The constructor function is also where you honor the inheritance of 
+the parent component by including the 'super()' statement, which executes 
+the parent component's constructor function, and your component has access 
+to all the functions of the parent component (React.Component).
+
+
+Example: Create a constructor function in the Car component, 
+-------  and add a color property:                                      -->
+
+<script>
+
+  class Car3 extends React.Component {
+    constructor() {
+      super();
+      this.state = {color: "Green"};
+    }
+    render() {
+      return <h2>I am a Car!</h2>;
+    }
+  }
+
+</script>
+ 
+
+<!-- Example: Use the color property in the render() function:  -->
+
+<script>
+
+  class Car4 extends React.Component {
+    constructor() {
+      super();
+      this.state = {color: "red"};
+    }
+    render() {
+      return <h2>I am a {this.state.color} Car!</h2>;
+    }
+  }
+</script>
+
+
+<!-- Props
+==========
+
+Another way of handling component properties is by using 'props'.
+
+'Props' are like function arguments, and you send them into the 
+component as attributes.You will learn more about props in the 
+next chapter.
+
+Example : Use an attribute to pass a color to the Car component, 
+          and use it in the render() function:                -->
+
+<script>
+
+    class Car extends React.Component {
+      render() {
+        return <h2> I am a {this.props.color} Car!</h2>;
+      }
+    }
+
+    ReactDOM.render(<Car color="red"/>, document.getElementById('root'));
+</script> 
+
+
+<!-- Components in Components
+==============================
+
+We can refer to components inside other components:
+
+Example: Use the Car component inside the Garage component:
+-------                                                     -->
+
+
+<script>
+    class Car extends React.Component {
+      render() {
+        return <h2>Cars stay in Garage!</h2>;
+      }
+    }
+
+    class Garage extends React.Component {
+      render() {
+        return (
+          <div>
+            <h1>Who lives in my Garage?</h1>
+            <Car />
+          </div>
+        );
+      }
+    }
+
+  ReactDOM.render(<Garage />, document.getElementById('root'));
+</script>
+
+
+<!-- Components in Files
+=========================
+
+React is all about re-using code, and it can be smart to insert some 
+of your components in separate files.
+
+To do that, create a new file with a '.js' file extension and put 
+the code inside it. 
+
+Important: The file must 'start' by importing React (as before), 
+           and it has to 'end' with the statement 'export default component_name';.
+
+
+Example: This is the new file, we named it "App.js":
+-------                                            -->
+
+<script>
+
+import React from 'react';
+
+class Car extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
+}
+
+export default Car;
+</script>
+
+
+<!-- To be able to use the Car component, you have to import the file in 
+your application.
+
+Example: Now we import the "App.js" file in the application, and we can
+-------  use the Car component as if it was created here.   -->
+
+
+<script>
+  import React from 'react';
+  import ReactDOM from 'react-dom';
+  import Car from './App.js';
+
+  ReactDOM.render(<Car />, document.getElementById('root')); 
+
+</script>
+
+
+</body>
+</html>

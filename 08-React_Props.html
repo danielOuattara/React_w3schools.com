@@ -1,0 +1,315 @@
+<!--|----------------------------------------------
+Daniel OUATTARA- daniel.ouattara_AT_gmx.com
+08 07 2020
+React Tutorial : https://www.w3schools.com/react/
+-------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Props</title>
+</head>
+
+<body>
+
+    <h1>React Props.</h1>
+    <hr />
+
+
+    <!-- 'Props' are arguments passed into React components via HTML attributes.
+
+React Props
+=============
+
+React 'Props' are like function arguments in JavaScript and attributes in HTML.
+To send 'props' into a component, use the same syntax as HTML attributes:
+
+
+Example: Add a "brand" attribute to the Car element:  -->
+
+    <script>
+        const myelement = < Car brand = "Ford" / > ;
+    </script>
+
+    <!-- The component receives the argument as a props object:
+
+
+Example: Use the brand attribute in the component:      -->
+
+    <script>
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+
+        class Car extends React.Component {
+
+            render() {
+                return <h2 > I am a {
+                    this.props.brand
+                }
+                car! < /h2>;
+            }
+        }
+
+        const myElement1 = < Car brand = "Ford" / > ;
+
+        ReactDOM.render(myElement1, document.getElementById('place1'));
+    </script>
+
+
+    <!-- Pass Data
+===============
+
+'Props' also pass data from one component to another, as parameters. 
+
+Example : Send the "brand" property from the Garage component 
+--------- to the Car component                                               -->
+
+
+    <script>
+        class Car2 extends React.Component {
+            render() {
+                return ( <
+                    div >
+                    <
+                    h2 > It is a {
+                        this.props.brand
+                    }! < /h2> <
+                    /div>
+                );
+            }
+        }
+
+        class Garage2 extends React.Component {
+
+            render() {
+                return ( <
+                    div >
+                    <
+                    h2 > Who lives in my Garage ? < /h2> <
+                    Car2 brand = "Ford" / >
+                    <
+                    /div>
+                );
+            }
+        }
+        ReactDOM.render( < Garage2 / > , document.getElementById('root'));
+    </script>
+
+
+    <!-- If you have a variable to send, that is not a string as in 
+the example above, you just put the variable name inside curly 
+brackets. See below
+
+Example: Create a variable named "carname" and send it to the Car component: -->
+
+    <script>
+        class Car3 extends React.Component {
+
+            render() {
+                return ( <
+                    div >
+                    <
+                    h2 > I possess {
+                        this.props.carNumber
+                    }
+                    car! < /h2> <
+                    /div>
+                );
+            }
+        }
+
+        class Garage3 extends React.Component {
+
+            render() {
+                return ( <
+                    div >
+                    <
+                    Car3 carNumber = {
+                        1 + 1
+                    }
+                    /> <
+                    /div>
+                );
+            }
+        }
+        ReactDOM.render( < Garage3 / > , document.getElementById('root'));
+
+        // ---------------------------------------------------------------------
+
+
+        // Example: Create a variable named "livingPlace", an Array and send it to 
+        // the Car component:
+
+        class Car4 extends React.Component {
+            render() {
+                return ( <
+                    div >
+                    <
+                    h2 > I live in {
+                        this.props.where
+                    }
+                    city < /h2> <
+                    /div>
+                );
+            }
+        }
+
+        class Garage4 extends React.Component {
+
+            render() {
+                let livingPlace = ["Tokyo", " Berlin", " Houston"];
+                return ( <
+                    div >
+                    <
+                    Car4 where = {
+                        livingPlace[0]
+                    }
+                    /> <
+                    /div>
+                );
+            }
+        }
+        ReactDOM.render( < Garage4 / > , document.getElementById('root'));
+
+        // --------------------------------------------------------------------------
+
+        class Car5 extends React.Component {
+
+            render() {
+                return ( <
+                    div >
+                    <
+                    h2 > I have a {
+                        this.props.brand
+                    }! < /h2> <
+                    h2 > I possess {
+                        this.props.carNumber
+                    }
+                    car! < /h2> <
+                    h2 > I live in {
+                        this.props.where
+                    }
+                    city < /h2> <
+                    /div>
+                );
+            }
+        }
+
+        class Garage5 extends React.Component {
+
+            render() {
+                let livingPlace = "Los Angeles";
+
+                return ( <
+                    div >
+                    <
+                    h2 > Who lives in my Garage ? < /h2> <
+                    Car5 brand = "Ford" / >
+                    <
+                    Car5 carNumber = {
+                        1 + 1
+                    }
+                    /> <
+                    Car5 where = {
+                        livingPlace
+                    }
+                    /> <
+                    /div>
+                );
+            }
+        }
+        ReactDOM.render( < Garage5 / > , document.getElementById('root'));
+
+        // -------------------------------------------------------------------------------
+
+        // // Example: Create an object named "carinfo" and send it to the Car component:
+
+        class Car6 extends React.Component {
+
+            render() {
+                return <h2 > I am a {
+                    this.props.brand.model
+                }! < /h2>
+            }
+        }
+
+
+        // class Car6 extends React.Component {
+
+        // render() {
+        //     return (
+        //         <h2> It is a { this.props.brand.name } { this.props.brand.model }!</h2>
+        //     );
+        // }
+        // }
+
+        // class Garage6 extends React.Component {
+
+        // render() {
+        //     let carInfo = {
+        //         name: "Ford",
+        //         model: "Mustang",
+        //         year:  1968
+        //     }
+
+        //     return (
+        //     <div>
+        //         <h2> What is in this garage ?</h2>
+        //         < Car6 brand={carInfo} />
+        //     </div>
+        //     );  
+        // }
+        // }
+
+        // ReactDOM.render(< Garage6 /> , document.getElementById('root'));
+    </script>
+
+    <!-- Props in the Constructor
+==============================
+
+If your component has a 'constructor' function, the 'props' should always be passed 
+to the 'constructor' and also to the React.Component via the super() method. -->
+
+
+    <script>
+        class Airplane extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    color: "red",
+                    brand: "Boeing",
+                    year: 2018
+                }
+            }
+
+            render() {
+                return ( <
+                    div >
+                    <
+                    hr / >
+                    <
+                    h2 > I am a airplane {
+                        this.props.color
+                    }! < /h2> <
+                    h2 > I am a airplane {
+                        this.state.color
+                    }! < /h2> <
+                    h2 > I am a airplane! < /h2> <
+                    /div>
+
+                );
+            }
+        }
+
+        ReactDOM.render( < Airplane color = "Mustang" / > , document.getElementById('root-7'));
+
+        // Note: React Props are read-only! You will get an error if you try to change their value.
+    </script>
+
+</body>
+
+</html>

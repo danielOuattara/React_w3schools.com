@@ -1,0 +1,11 @@
+
+$myColor: red;
+
+.title-2 {
+  color: $myColor;
+  &:hover {
+    padding: 15px;
+    background-color: red;
+    color: white;
+  }
+}

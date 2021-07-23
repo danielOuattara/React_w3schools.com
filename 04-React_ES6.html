@@ -1,0 +1,391 @@
+<!--|----------------------------------------------
+Daniel OUATTARA- daniel.ouattara_AT_gmx.com
+08 07 2020
+React Tutorial : https://www.w3schools.com/react/
+-------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React ES6</title>
+</head>
+
+<body>
+
+    <h1>React ES6.</h1>
+    <hr />
+
+
+    <!-- What is ES6 ?
+====================
+
+ES6 stands for ECMAScript 6.
+
+ECMAScript was created to standardize JavaScript, and ES6 is 
+the 6th version of ECMAScript, it was published in 2015, and 
+is also known as ECMAScript 2015.
+
+
+Why Should I Learn ES6 ?
+========================
+
+React uses ES6, and you should be familiar with some of the new 
+features like:
+   > Variables (let, const, var)
+   > spread operator
+   > array.map
+   > array.filter
+   > Arrow Functions
+   > object destructuring
+   > Classes, inheritance and modules
+
+
+Classes
+========
+
+ES6 introduced classes.
+
+A class is a type of function, but instead of using the keyword 
+'function' to initiate it, we use the keyword 'class', and the 
+properties are assigned inside a 'constructor()' method. 
+
+A simple class constructor:
+----------------------------
+class Car {
+  constructor(name) {
+    this.brand = name;
+  }
+}
+
+Now you can create objects using the Car class:
+---------------------------------------------->
+    <button id="button1">Click myCar</button>
+
+    <script>
+        class Car {
+            constructor(name) {
+                this.brand = name;
+            }
+        }
+
+        let myCar = new Car('Ford');
+        const button1 = document.getElementById('button1');
+        button1.onclick = showCar;
+
+        function showCar() {
+            alert(myCar.brand);
+        }
+    </script>
+
+    <!-- Note: The constructor function is called automatically when 
+           the object is initialized.
+
+
+Methods in Classes
+==================
+
+You can add your own methods in a class:  -->
+
+    <button id="button2">Click myCar</button>
+    <p id=para-1></p>
+
+    <script>
+        class Car2 {
+            constructor(name) {
+                this.brand = name;
+            }
+
+            present2() {
+                return 'I have a ' + this.brand;
+            }
+        }
+
+        let myCar2 = new Car2('Ford');
+
+        let para1 = document.getElementById('para-1');
+        para1.innerHTML = myCar2.present2();
+
+        const button2 = document.getElementById('button2');
+        button2.onclick = showCar2;
+
+        function showCar2() {
+            alert(myCar2.present2());
+        }
+    </script>
+
+    <!-- As you can see in the example above, you call the method by 
+referring to the object's method name followed by parentheses 
+(parameters would go inside the parentheses).
+
+
+Class Inheritance
+==================
+
+To create a class inheritance, use the 'extends' keyword.
+
+A class created with a class inheritance inherits all 
+the methods from another class:
+
+Create a class named "Model" which will inherit the methods from 
+the "Car" class:                                                                   -->
+
+
+    <button id="button3">Click myCar</button>
+    <script>
+        class Car3 {
+            constructor(name, yr) {
+                this.brand = name;
+                this.year = yr;
+            }
+
+            present3() {
+                return 'I have a  ' + this.brand + ' ,' + this.year;
+            }
+        }
+
+        class Car3Model extends Car3 {
+            constructor(name, yr, mod) {
+                super(name, yr);
+                this.model = mod;
+            }
+
+            presentCar3() {
+                return this.present3() + ' ,' + this.model;
+            }
+        }
+
+        var myCar3 = new Car3Model('Ford', ' 1976', ' Mustang');
+
+        var button3 = document.getElementById('button3');
+        button3.onclick = showCar3;
+
+        function showCar3() {
+            alert(myCar3.presentCar3());
+        }
+    </script><br /><br />
+
+    <!-- The 'super()' method refers to the parent class. By calling 
+the 'super()' method in the constructor method, we call the parent's 
+constructor method and gets access to the parent's properties 
+and methods. 
+
+
+Arrow Functions
+================
+
+Arrow functions were introduced in ES6, and allow us to write 
+shorter function syntax:
+
+Before: 
+-------                                                                -->
+    <p id="demo1"></p>
+    <p id="demo3"></p>
+
+    <script>
+        function hello1() {
+            return "Hello World 1";
+        }
+
+        document.getElementById("demo1").innerHTML = hello1();
+
+        var hello3 = function () {
+            return "Hello World 3";
+        }
+
+        document.getElementById("demo3").innerHTML = hello3();
+    </script>
+
+
+    <!-- With Arrow Function:
+ -------------------------                                              -->
+
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <p id="demo7"></p>
+    <p id="demo8"></p>
+
+    <script>
+        hello4 = () => {
+            return "Hello World 4"
+        }
+
+        document.getElementById("demo4").innerHTML = hello4();
+
+        hello5 = () => "Hello World 5";
+
+        document.getElementById("demo5").innerHTML = hello5();
+
+        /* 
+           It gets shorter! If the function has only one statement, and 
+           the statement returns a value, you can remove the brackets
+           and the return keyword:
+
+           If you have parameters, you pass them inside the parentheses:
+        */
+
+        hello6 = (value) => "Hello " + value + " 6";
+
+        document.getElementById("demo6").innerText = hello6('World');
+
+        /*
+           In fact, if you have only one parameter, you can skip 
+           the parentheses as well:
+        */
+
+        hello7 = value => "Hello " + value + " 7";
+
+        document.getElementById("demo7").innerHTML = hello7('World');
+
+
+        hello8 = (value1, value2) => "Hello " + value1 + " Of The " + value2;
+
+        document.getElementById("demo8").innerHTML = hello8('World', 'North');
+    </script>
+
+
+
+    <!-- What About this ?
+======================
+
+The handling of 'this' is also different in arrow functions compared 
+to regular functions.
+
+> For arrow functions there are no binding of 'this'
+  and the 'this' keyword always represents the object that 
+  defined the arrow function.
+
+> For regular functions the 'this' keyword represented the object
+  that called the function, which could be the 'window', 
+  the 'document', a 'button' or 'whatever'.
+
+Let's take a look at two examples to understand the difference.
+Both examples call a method twice, first when the page loads, 
+and once again when the user clicks a button.
+
+The first example uses a regular function, and the second example uses 
+an arrow function.
+
+The result shows that the first example returns two different objects 
+(window and button), and the second example returns the Header object twice. -->
+
+
+    <hr />
+
+
+    <h2>Regular Function</h2>
+
+    <p>The <strong>this</strong> keyword represents different objects
+        depending on how the function was called.</p>
+
+    <button id="button4">Click Me!</button>
+    <p><strong>this</strong> represents:</p>
+    <p id="demo9"></p>
+    <p>See the difference before and after the button is clicked.</p>
+
+
+    <h2>Arrow Function</h2>
+
+    <p>The <strong>this</strong> keyword represents the Header object.</p>
+    <button id="button5">Click Me!</button>
+    <p><strong>this</strong> represents:</p>
+    <p id="demo10"></p>
+
+    <script>
+        class Coloring {
+            constructor() {
+                this.color = 'Red';
+            }
+
+            // Regular Function:
+            changeColor() {
+                document.getElementById("demo9").innerHTML += this;
+            }
+
+
+            // Arrow function
+            changeColor2 = () => {
+                document.getElementById('demo10').innerHTML += this;
+            }
+        }
+
+        var myColor = new Coloring();
+
+        // THe window object calls the function:
+        window.addEventListener("load", myColor.changeColor);
+
+        // A button object calls the function:
+        document.getElementById("button4").addEventListener("click", myColor.changeColor);
+
+        // ----------------------------------------------------------------------------------
+
+        var myColor2 = new Coloring();
+
+        // THe window object calls the function:
+        window.addEventListener("load", myColor2.changeColor2);
+
+        // A button object calls the function:
+        document.getElementById("button5").addEventListener("click", myColor2.changeColor2);
+    </script> <br />
+    <hr />
+
+    <!-- Remember these differences when you are working with functions. 
+    Sometimes the behavior of regular functions is what you want, 
+    if not, use arrow functions.
+
+
+Variables
+=========
+
+Before ES6 there were only one way of defining your variables: with the 'var' keyword. 
+If you did not define them, they would be assigned to the global object. 
+Unless you were in strict mode, then you would get an error if your 
+variables were undefined.
+
+Now, with ES6, there are three ways of defining your variables: var, let, and const. 
+
+var 
+====
+
+var x = 3.14159;
+
+'var' has a function scope, not a block scope.
+----------------------------------------------
+
+ > if you use 'var' outside of a function, it belongs to the global scope.
+ > if you use 'var' inside of a function, it belongs to that function.
+ > if you use 'var' inside of a block, i.e. a for loop, the variable 
+   is still available outside of that block
+   
+let 
+====
+
+let x = 3.14159;
+
+let has a block scope.
+----------------------
+
+'let' is the block scoped version of 'var', and is limited to the block 
+(or expression) where it is defined.
+
+ > if you use 'let' inside of a block, i.e. a for loop, the variable is 
+   only available inside of that loop.
+
+
+const
+=======
+
+const x = 5.6;
+
+'const' is a variable that once it has been created, its value can never change.
+
+'const' has a block scope.                                                       -->
+
+
+
+</body>
+
+</html>

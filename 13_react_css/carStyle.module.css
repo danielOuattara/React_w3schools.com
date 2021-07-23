@@ -1,0 +1,11 @@
+
+.bigRed {
+    color: red;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
+    border: 1px solid red;
+    border-radius: 7px;
+    background-color: #CCC;
+  }
+  
