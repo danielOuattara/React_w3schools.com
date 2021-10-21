@@ -43,6 +43,18 @@ Learning by Examples
 Our "Show React" tool makes it easy to demonstrate React,
 it shows both the code and the result.
 
+_____________________________________________________________
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function Hello(props) {
+  return <h1>Hello World!</h1>;
+}
+
+ReactDOM.render(<Hello />, document.getElementById('root'));
+______________________________________________________________
+
 
 Create React App
 =================
@@ -53,18 +65,12 @@ on your computer.
 This tutorial uses the 'create-react-app'. It is an officially
 supported way to create React applications.
 
-If you have 'npm' and 'Node.js' installed, you can create a React
-application by first installing the 'create-react-app'.
+'npm' and 'Node.js' are required to create a React
+application.
 
-Install 'create-react-app' by running this command in your terminal:
-__________________________________________________
-C:\Users\Your Name>npm install -g create-react-app
+Run this command to create a React application named 'myfirstreact': 
 
-You are now ready to create your first React application !
-
-Run this command to create a React application named 'myfirstreact':
-____________________________________________________
-C:\Users\Your Name>npx create-react-app myfirstreact
+npx create-react-app myfirstreact
 
 The 'create-react-app' will set up everything you need to run a React
 application.
@@ -90,14 +96,7 @@ _________________________________________
 C:\Users\Your Name\myfirstreact>npm start
 
 A new browser window will pop up with your newly created React App!
-If not, open your browser and type localhost:3000 in the address bar.
-
-
-You will learn more about the create-react-app in the React Get Started
-chapter.                                                              -->
-
-
-      <div id="root"></div>
+If not, open your browser and type localhost:3000 in the address bar. -->
 
 </body>
 </html>

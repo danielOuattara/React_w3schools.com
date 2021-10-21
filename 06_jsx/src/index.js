@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 
 You add a form with React like any other element: */
 
-class  MyForm extends React.Component{
+class MyForm extends React.Component{
     render() {
         return (
             <div>
@@ -17,7 +17,7 @@ class  MyForm extends React.Component{
                     <p>Enter your name : </p>
                     <input type="text"/>
                 </form>
-            <hr/>
+                <hr/>
             </div>
         )
     }

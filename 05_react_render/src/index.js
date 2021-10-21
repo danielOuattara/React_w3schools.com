@@ -6,15 +6,15 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+// import App from './App.js';
 const myelement = (
   <table>
-  <thead>
+    <thead>
     <tr>
       <th>Month</th>
       <th>Savings</th>
     </tr>
-  </thead>
+    </thead>
   <tbody>
     <tr>
       <td>January</td>

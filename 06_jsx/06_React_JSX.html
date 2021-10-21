@@ -18,7 +18,7 @@ React Tutorial : https://www.w3schools.com/react/
   <h1>React JSX.</h1>
   <hr />
 
-  <!-- What is JSX ?
+<!-- What is JSX ?
 ===================
 
 JSX stands for JavaScript XML.
@@ -41,27 +41,22 @@ Let us demonstrate with two examples, the first uses JSX
 and the second does not:
 
 JSX:
------
-// React JSX
 
-example1
---------                                                                 -->
+// React JSX  
+
   <script>
     const myElement = < h2 > I use JSX! < /h2>;
     ReactDOM.render(myElement, document.getElementById('place_1'));
   </script>
 
-  <!--
-example2
---------
--->
+
   <script>
     const myElement2 = React.createElement('h2', {}, 'I do not use JSX');
     ReactDOM.render(myElement2, document.getElementById('place_2'));
   </script>
 
 
-  <!-- As you can see in example1, JSX allows to write HTML directly 
+As you can see in example1, JSX allows to write HTML directly 
 within the JavaScript code. JSX is an extension of the JavaScript 
 language based on ES6, and is translated into regular JavaScript 
 at runtime.
@@ -75,37 +70,31 @@ The expression can be a React variable, or property, or any
 other valid JavaScript expression. JSX will execute the 
 expression and return the result:
 
-Example: Execute the expression 5 + 5:   -->
+Example: Execute the expression 5 + 5: 
 
   <script>
-    const myelement = < h1 > React is {
-      5 + 5
-    }
-    times better with JSX < /h1>;
+    const myelement = <h1> React is {5 + 5} times better with JSX </h1>;
   </script>
 
 
-  <!--
+
 Inserting a Large Block of HTML
-================================
+====================================
 
 To write HTML on multiple lines, put the HTML inside parentheses:
 
-Example: Create a list with three list items: -->
+Example: Create a list with three list items:
 
   <script>
-    const myelement = ( <
-      ul >
-      <
-      li > Apples < /li> <
-      li > Bananas < /li> <
-      li > Cherries < /li> < /
-      ul >
+    const myelement = ( 
+      <ul >
+        <li > Apples < /li> 
+        <li > Bananas < /li> 
+        <li > Cherries < /li> 
+      </ul >
     );
   </script>
 
-
-  <!-- 
 
 One Top Level Element
 ======================
@@ -114,21 +103,19 @@ The HTML code must be wrapped in ONE top level element.
 So if you need to write two headers, you must put them 
 inside a parent element, like a div element
 
-Example Wrap two headers inside one DIV element: -->
+Example Wrap two headers inside one DIV element: 
 
   <script>
-    const myelement = ( <
-      div >
-      <
-      h1 > I am a Header. < /h1> <
-      h1 > I am a Header too. < /h1> < /
-      div >
+    const myelement = ( 
+      <div >
+        <h1 > I am a Header. < /h1> 
+        <h1 > I am a Header too. < /h1>   
+      <div >
     );
   </script>
 
 
-  <!-- 
-  JSX will throw an error if the HTML is not correct, 
+JSX will throw an error if the HTML is not correct, 
 or if the HTML misses a parent element.
 
 
@@ -137,15 +124,15 @@ Elements Must be Closed
 
 JSX follows XML rules, and therefore HTML elements must be properly closed.
 
-Example: Close empty elements with />  -->
+Example: Close empty elements with /> 
 
   <script>
-    const myelement = < input type = "text" / > ;
+    const myelement = < input type = "text" /> ;
   </script>
 
 
-  JSX will throw an error if the HTML is not properly closed. -->
-
+  JSX will throw an error if the HTML is not properly closed.  
+-->
 </body>
 
 </html>

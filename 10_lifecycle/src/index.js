@@ -3,201 +3,334 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-/* Adding Forms in React
-==========================
+/* I. MOUNTING 
+================*/
 
-You add a form with React like any other element: */
 
-class  MyForm extends React.Component{
+/* n°1: constructor()
+-------------------- */
+
+class Mounting extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { favoriteColor: 'red', fontSize : "15px" };
+    }
+
     render() {
         return (
             <div>
-               <form>
-                    <h2>Hello form</h2>
-                    <p>Enter your name : </p>
-                    <input type="text"/>
-                </form>
-            <hr/>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <hr/>
+            </div>
+        );
+    }
+}
+
+/* n°2: getDerivedStateFromProps()
+----------------------------------- */
+class Mounting2 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { favoriteColor: 'red', fontSize : "15px" };
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return { favoriteColor: props.favcol}
+    }
+
+    render() {
+        return (
+            <div>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <hr/>
+            </div>
+        );
+    }
+}
+
+/* n°3: render()
+----------------- */
+class Mounting3 extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <h3> This is the Component of render()</h3>
+                <hr/>
+            </div>
+        );
+    }
+}
+
+/* n°4: componentDidMount()
+--------------------------- */
+class Mounting4 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { favoriteColor: 'red', fontSize : "15px" };
+    }
+
+    render() {
+        return (
+            <div>
+                <h3> My favorite Color is {this.state.favoriteColor }</h3>
+                <hr/>
+                <hr/>
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        setTimeout( () => {
+            this.setState ({ favoriteColor:'Orange'})
+        }, 2000)
+    }
+}
+
+ReactDOM.render( <div>
+         <Mounting /> 
+        < Mounting2 favcol="Yellow"/>
+        < Mounting3 />
+        < Mounting4 />
+    </div>, document.getElementById('root-1')
+);
+//==========================================================================
+
+
+/* II. UPDATE
+================*/
+
+/* n°1: getDerivedStateFromProps()
+----------------------------------- */
+
+class Updating11 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { favoriteColor: 'red'};
+    }
+
+    changeColor = () => {
+        this.setState({ favoriteColor: 'blue'})
+    }
+
+    render() {
+        return (
+            <div>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <button type='button' onClick={this.changeColor} >Click</button>
             </div>
         )
     }
 }
 
-ReactDOM.render( <MyForm/>, document.getElementById('root-1'));
+// ---
+class Updating12 extends React.Component {
 
-
-
-/* Handling Forms
-================== */
-
-class MyForm2 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: ''};
+        this.state = { favoriteColor: 'red'};
     }
 
-    changeHandler = (event) => {
-        this.setState( { username: event.target.value });
+    static getDerivedStateFromProps(props,state) {
+        return {favoriteColor: props.favcol};
+    }
+
+    changeColor = () => {
+        this.setState({ favoriteColor: 'blue'})
     }
 
     render() {
-        return(
+        return (
             <div>
-                <form>
-                    <h2>Hello form</h2>
-                    <p>Enter your name : </p>
-                    <input type="text" onChange={ this.changeHandler }/>
-                    <h2>You entered: { this.state.username }</h2>
-                </form>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <button type='button' onClick={this.changeColor} >Click</button>
                 <hr/>
             </div>
         )
     }
 }
 
-ReactDOM.render ( <MyForm2 />, document.getElementById('root-2'));
 
-/* 
-NOTE: 
- --> You must initialize the state in the constructor 
-     method before you can use it.
+/* n°2: shouldComponentUpdate()
+--------------------------------- */
 
- --> You get access to the field value by using the 
-     "event.target.value syntax"
- */
-
-
-     
-/* Conditional Rendering
-========================  */
-
-class MyForm3 extends React.Component {
+class Updating21 extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state= { username: ''};
+        this.state = { favoriteColor: 'red'};
     }
 
-    changeHandler = (event) => {
-        this.setState( {username: event.target.value});
+    shouldComponentUpdate() {
+        return false;
+    }
+
+    changeColor = () => {
+        this.setState({ favoriteColor: 'blue'})
+    }
+
+    render() {
+        return (
+            <div>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <button type='button' onClick={this.changeColor} >Click</button>
+            </div>
+        )
+    }
+}
+
+
+class Updating22 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { favoriteColor: 'red'};
+    }
+
+    shouldComponentUpdate() {
+        return true;
+    }
+
+    changeColor = () => {
+        this.setState({ favoriteColor: 'blue'})
+    }
+
+    render() {
+        return (
+            <div>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <button type='button' onClick={this.changeColor} >Click</button>
+                <hr/>
+            </div>
+        )
+    }
+}
+
+
+/* n°3: render()
+---------------- */
+
+class Updating3 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {favoriteColor: 'red'};
+    }
+
+    changeColor = () => {
+        this.setState({favoriteColor: 'blue'});
+    }
+
+    render() {
+        return (
+            <div>
+                <h3> My favorite Color is {this.state.favoriteColor}</h3>
+                <button type='button' onClick={this.changeColor}>Click</button>
+                <hr/>
+            </div>
+        );
+    }
+}
+
+
+/* n°4: getSnapshotBeforeUpdate() & componentDidUPdate()
+-------------------------------------------------------- */
+
+
+class Updating4 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {favoriteColor: 'red'};
+    }
+
+    componentDidMount() {
+        setTimeout( ()=> {
+            this.setState( {favoriteColor: 'yellow'})
+        }, 2000)
+    }
+
+    getSnapshotBeforeUpdate( prevProps, prevState) {
+        document.getElementById("div1").innerHTML =
+           "Before the update, the favorite color was " + prevState.favoriteColor;    
+    }
+
+    componentDidUpdate() {
+        document.getElementById("div2").innerHTML = 
+            "The updated favorite color is " + this.state.favoriteColor;
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>My favortie color is {this.state.favoriteColor}</h3>
+                <div id="div1"></div>
+                <div id="div2"></div>
+            </div>
+        )
+    }
+}
+
+
+ReactDOM.render( 
+    <div>
+        < Updating11 favcol='Yellow' />
+        < Updating12 favcol='Yellow' />
+        < Updating21 />
+        < Updating22 />
+        < Updating3 />
+        < Updating4 />
+    </div>, document.getElementById('root-2')
+);
+
+
+class UnMounting extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { show: 'true'};
+    }
+
+    deleteComponent = () => {
+        this.setState({ show: false});
     }
 
     render() {
 
-        let header ='';
-        if (this.state.username) {
-            header = <h1> Hello {this.state.username} </h1>
-        } else {
-            header = ' ';
+        let myComponent;
+        if (this.state.show) {
+            myComponent = < Child />;
         }
-
-        return(
+        return (
             <div>
-                <form>
-                    <p>Enter your name : </p>
-                    <input type="text" onChange={ this.changeHandler }/>
-                </form>
-                {header}
-                <hr/>
+                {myComponent}
+                <button type='button' onClick= {this.deleteComponent}>Delete Component</button>
             </div>
-
         )
     }
 }
 
-ReactDOM.render ( <MyForm3 />, document.getElementById('root-3'));
 
+class Child extends React.Component {
 
-
-/* Submitting Forms 
-====================
-
-You can control the submit action by adding 
-an event handler in the onSubmit attribute:
-*/
-
-class MyForm4 extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = { username: ''};
-    }
-
-    submitHandler = (event) => {
-        event.preventDefault();
-        alert("You're submitting " + this.state.username);
-    }
-
-    changeHandler = (event) => {
-        this.setState( {username: event.target.value} );
+    componentWillUnmount() {
+        alert ("THe component -- Unmounting -- is about to be unmounted !");
     }
 
     render() {
-        return(
-            <div>
-                <form onSubmit={this.submitHandler}>
-                    <h1>Hello {this.state.username}</h1>
-                    <p>Enter your name, and submit:</p>
-                    <input type='text' onChange={this.changeHandler} />
-                    <input type='submit' />
-                </form>
-                <hr/>
-            </div>
-        );
+        return (
+            <div>LifeCycle Terminated</div>
+        )
     }
 }
 
-ReactDOM.render( <MyForm4 />, document.getElementById('root-4'));
+ReactDOM.render( 
+    <div>
+        < UnMounting />
+    </div>, document.getElementById('root-3')
+);
 
-/* Note that we use event.preventDefault() to prevent the form 
-   from actually being submitted. */
-
-
-
-   /* Multiple Input Fields
-   ========================= */
-
-   
-   class MyForm5 extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = { 
-            username: '',
-            age: null,
-        };
-    }
-
-    changeHandler = (event) => {
-        let nameData = event.target.name;
-        let valueData = event.target.value;
-        this.setState({[nameData]: valueData})
-    }
-
-    submitHandler = (event) => {
-        event.preventDefault();
-        alert("You're submitting " + this.state.username + ' ' + this.state.age);
-    }
-
-    // changeHandler = (event) => {
-    //     this.setState( {username: event.target.value} );
-    // }
-
-    render() {
-        return(
-            <div>
-                <form onSubmit={this.submitHandler}>
-                    <h1>Hello {this.state.username} {this.state.age}</h1>
-
-                    <label htmlFor='username'>Enter your username :</label>
-                    <input type='text' name='username' onChange={this.changeHandler} /><br/>
-
-                    <label htmlFor="age">Enter your age : </label>
-                    <input type='text' name='age' onChange={this.changeHandler} /><br/>
-
-                    <input type='submit' />
-                </form>
-            </div>
-        );
-    }
-}
-
-ReactDOM.render( <MyForm5 />, document.getElementById('root-5'));
