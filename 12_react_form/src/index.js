@@ -17,9 +17,9 @@ class MyForm extends React.Component{
                     <p>Enter your name : </p>
                     <input type="text"/>
                 </form>
-            <hr/>
+                <hr/>
             </div>
-        )
+        );
     }
 }
 
@@ -100,10 +100,9 @@ NOTE:
 ========================  */
 
 class MyForm3 extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state= { username: ''};
+        this.state = { username: ''};
     }
 
     changeHandler = (event) => {
@@ -308,13 +307,6 @@ class MyForm6Bis extends React.Component {
     changeHandler = (event) => {
         let nameData = event.target.name;
         let valueData = event.target.value;
-
-        // if (nameData === "age") {
-        //     if (!Number(valueData)) {
-        //         alert("Your age must be an integer ")
-        //     }
-        // };
-
         this.setState({ [nameData]: valueData })
     }
 
@@ -423,20 +415,20 @@ textarea is placed in a value attribute: */
  class MyForm8 extends React.Component {
     constructor(props) {
         super(props)
-    
         this.state = {
-             description:""
+            description:""
         };
-    }
-
-    submitHandler = (event) => {
-        event.preventDefault();
-        alert("You're submitting : " + this.state.description);
     }
 
     changeHandler = (event) => {
         let valueData = event.target.value;
         this.setState({description: valueData})
+    }
+
+
+    submitHandler = (event) => {
+        event.preventDefault();
+        alert("You're submitting : " + this.state.description);
     }
     
     render() {

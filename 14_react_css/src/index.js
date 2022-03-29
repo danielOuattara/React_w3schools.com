@@ -1,203 +1,140 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './App.css';
+import styles from './style-1.module.css';
+import CarFunction from './CarFunction';
+import CarClass from './CarClass';
 
 
-/* Adding Forms in React
+/* Styling React Using CSS
 ==========================
 
-You add a form with React like any other element: */
+There are many ways to style React with CSS, this tutorial will 
+take a closer look at "inline styling", and "CSS stylesheet".=*/
 
-class  MyForm extends React.Component{
+
+/* Inline Styling
+================== */
+
+class MyHeader extends React.Component{
+
     render() {
         return (
             <div>
-               <form>
-                    <h2>Hello form</h2>
-                    <p>Enter your name : </p>
-                    <input type="text"/>
-                </form>
-            <hr/>
-            </div>
-        )
-    }
-}
-
-ReactDOM.render( <MyForm/>, document.getElementById('root-1'));
-
-
-
-/* Handling Forms
-================== */
-
-class MyForm2 extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { username: ''};
-    }
-
-    changeHandler = (event) => {
-        this.setState( { username: event.target.value });
-    }
-
-    render() {
-        return(
-            <div>
-                <form>
-                    <h2>Hello form</h2>
-                    <p>Enter your name : </p>
-                    <input type="text" onChange={ this.changeHandler }/>
-                    <h2>You entered: { this.state.username }</h2>
-                </form>
+                <h1 style= {{color: "red"}}> Hello Style</h1>
                 <hr/>
             </div>
         )
     }
 }
 
-ReactDOM.render ( <MyForm2 />, document.getElementById('root-2'));
+ReactDOM.render( <MyHeader/>, document.getElementById('root-1'));
+//-----------------------------------------------------------------------
 
-/* 
-NOTE: 
- --> You must initialize the state in the constructor 
-     method before you can use it.
-
- --> You get access to the field value by using the 
-     "event.target.value syntax"
- */
+/* Note: In JSX, JavaScript expressions are written inside curly braces, 
+         and since JavaScript objects also use curly braces, the styling 
+         in the example above is written inside two sets of curly braces {{}}. */
 
 
-     
-/* Conditional Rendering
-========================  */
+/* camelCased Property Names 
+-------------------------------*/
+class MyHeader2 extends React.Component{
 
-class MyForm3 extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state= { username: ''};
+    render() {
+        return (
+            <div>
+                <h1  style= {{backgroundColor: "lightblue", padding:"15px"}}>CamelCase Property</h1>
+                <hr/>
+            </div>
+        )
     }
+}
 
-    changeHandler = (event) => {
-        this.setState( {username: event.target.value});
+ReactDOM.render( <MyHeader2/>, document.getElementById('root-2'));
+
+
+
+/* JavaScript Object
+--------------------- */
+
+class MyHeader3 extends React.Component{
+
+    constructor() {
+        super();
+        this.state = {
+            orangeStyle: {
+                color: "white",
+                backgroundColor:"orange",
+                padding:"15px",
+                fontFamily: "Arial"
+            }
+        }
     }
 
     render() {
-
-        let header ='';
-        if (this.state.username) {
-            header = <h1> Hello {this.state.username} </h1>
-        } else {
-            header = ' ';
+        const myStyle = {
+            color: "white",
+            backgroundColor:"DodgerBlue",
+            padding:"15px",
+            fontFamily: "Arial"
         }
 
-        return(
+        return (
             <div>
-                <form>
-                    <p>Enter your name : </p>
-                    <input type="text" onChange={ this.changeHandler }/>
-                </form>
-                {header}
-                <hr/>
-            </div>
-
-        )
-    }
-}
-
-ReactDOM.render ( <MyForm3 />, document.getElementById('root-3'));
-
-
-
-/* Submitting Forms 
-====================
-
-You can control the submit action by adding 
-an event handler in the onSubmit attribute:
-*/
-
-class MyForm4 extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = { username: ''};
-    }
-
-    submitHandler = (event) => {
-        event.preventDefault();
-        alert("You're submitting " + this.state.username);
-    }
-
-    changeHandler = (event) => {
-        this.setState( {username: event.target.value} );
-    }
-
-    render() {
-        return(
-            <div>
-                <form onSubmit={this.submitHandler}>
-                    <h1>Hello {this.state.username}</h1>
-                    <p>Enter your name, and submit:</p>
-                    <input type='text' onChange={this.changeHandler} />
-                    <input type='submit' />
-                </form>
+                <h1 style= {myStyle}>CamelCase Property</h1>
+                <h1 style= {this.state.orangeStyle}>CamelCase Property</h1>
                 <hr/>
             </div>
         );
     }
 }
 
-ReactDOM.render( <MyForm4 />, document.getElementById('root-4'));
-
-/* Note that we use event.preventDefault() to prevent the form 
-   from actually being submitted. */
+ReactDOM.render( <MyHeader3/>, document.getElementById('root-3'));
 
 
 
-   /* Multiple Input Fields
-   ========================= */
+/* CSS StyleSheet 
+==================*/
 
-   
-   class MyForm5 extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = { 
-            username: '',
-            age: null,
-        };
+class MyHeaderExternalCSS extends React.Component {
+    // App.css file
+    render() {
+        return (
+          <div>
+            <h1> body styled in external CSS</h1>
+            <hr/>
+          </div>
+        );
     }
+}
 
-    changeHandler = (event) => {
-        let nameData = event.target.name;
-        let valueData = event.target.value;
-        this.setState({[nameData]: valueData})
-    }
+ReactDOM.render( <MyHeaderExternalCSS />, document.getElementById('root-4'));
 
-    submitHandler = (event) => {
-        event.preventDefault();
-        alert("You're submitting " + this.state.username + ' ' + this.state.age);
-    }
 
-    // changeHandler = (event) => {
-    //     this.setState( {username: event.target.value} );
-    // }
 
+
+/* CSS Modules
+================
+
+CSS Modules are convenient for components that are placed in separate files.
+
+The CSS inside a module is available only for the component that imported it, 
+and you do not have to worry about name conflicts.
+
+Create the CSS module with the '.module.css' extension. */
+
+class UsingCSSModule extends React.Component {
     render() {
         return(
             <div>
-                <form onSubmit={this.submitHandler}>
-                    <h1>Hello {this.state.username} {this.state.age}</h1>
-
-                    <label htmlFor='username'>Enter your username :</label>
-                    <input type='text' name='username' onChange={this.changeHandler} /><br/>
-
-                    <label htmlFor="age">Enter your age : </label>
-                    <input type='text' name='age' onChange={this.changeHandler} /><br/>
-
-                    <input type='submit' />
-                </form>
+                <h1 className= {styles.bigblue}> Using CSS Module</h1>
             </div>
         );
     }
 }
 
-ReactDOM.render( <MyForm5 />, document.getElementById('root-5'));
+ReactDOM.render( < UsingCSSModule />, document.getElementById('root-5'));
+
+ReactDOM.render( <div> < CarClass /> <CarFunction/> </div>, document.getElementById('root-6'));
+

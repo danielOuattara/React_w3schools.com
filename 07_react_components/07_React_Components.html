@@ -47,13 +47,13 @@ The component also requires a 'render()' method, this method returns HTML.
 Example: Create a Class component called Car                           
 --------                                                              -->
 
-    <script>
+    <script type="text/babel">
 
-    class Car extends React.Component {
-      render() {
-         return <h2>Hi, I am a Car!</h2>;
+      class Car extends React.Component {
+        render() {
+          return <h2>Hi, I am a Car!</h2>;
+        }
       }
-    }
 
     </script>
 
@@ -189,7 +189,6 @@ We can refer to components inside other components:
 
 Example: Use the Car component inside the Garage component:
 -------                                                     -->
-
 
 <script>
     class Car extends React.Component {

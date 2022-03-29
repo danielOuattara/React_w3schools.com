@@ -11,7 +11,6 @@ import ReactDOM from 'react-dom';
 -------------------- */
 
 class Mounting extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = { favoriteColor: 'red', fontSize : "15px" };
@@ -26,6 +25,9 @@ class Mounting extends React.Component {
         );
     }
 }
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+
 
 /* n°2: getDerivedStateFromProps()
 ----------------------------------- */
@@ -49,6 +51,8 @@ class Mounting2 extends React.Component {
         );
     }
 }
+ReactDOM.render(< Mounting2 favColor="Yellow" />, document.getElementById('root'));
+
 
 /* n°3: render()
 ----------------- */
@@ -63,6 +67,8 @@ class Mounting3 extends React.Component {
         );
     }
 }
+ReactDOM.render(< Mounting3 />, document.getElementById('root'));
+
 
 /* n°4: componentDidMount()
 --------------------------- */
@@ -275,6 +281,35 @@ class Updating4 extends React.Component {
     }
 }
 
+/* n°5: componentDidUPdate()
+-------------------------------------------------------- */
+
+class Updating5 extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {favoritecolor: "red"};
+      }
+      componentDidMount() {
+        setTimeout(() => {
+          this.setState({favoritecolor: "yellow"})
+        }, 2000)
+      }
+      componentDidUpdate() {
+        document.getElementById("mydiv").innerHTML =
+        "The updated favorite is " + this.state.favoritecolor;
+      }
+      render() {
+        return (
+          <div>
+            <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+            <div id="mydiv"></div>
+          </div>
+        );
+      }
+}
+
+
 
 ReactDOM.render( 
     <div>
@@ -284,9 +319,16 @@ ReactDOM.render(
         < Updating22 />
         < Updating3 />
         < Updating4 />
+        < Updating5 />
     </div>, document.getElementById('root-2')
 );
 
+
+//==========================================================================
+
+
+/* II. UNMOUTING
+==================*/
 
 class UnMounting extends React.Component {
 

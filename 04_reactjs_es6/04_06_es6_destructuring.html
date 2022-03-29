@@ -52,7 +52,6 @@ const [car,, suv] = vehicles;
 Destructuring comes in handy when a function returns an array:
 ------------------------------------------------------------------
 
-
 function calculate(a, b) {
   const add = a + b;
   const subtract = a - b;
@@ -88,6 +87,7 @@ const vehicleOne = {
 myVehicle(vehicleOne);
 
 // old way
+
 function myVehicle(vehicle) {
   const message = 'My ' + vehicle.type + ' is a ' + vehicle.color + ' ' + vehicle.brand + ' ' + vehicle.model + '.';
 }
@@ -115,7 +115,9 @@ function myVehicle({type, color, brand, model}) {
 Notice that the object properties do not have to be declared 
 in a specific order.
 
-We can even destructure deeply nested objects by referencing the nested object then using a colon and curly braces to again destructure the items needed from the nested object:
+We can even destructure deeply nested objects by referencing 
+the nested object then using a colon and curly braces to again 
+destructure the items needed from the nested object:
 
 const vehicleOne = {
   brand: 'Ford',
@@ -135,6 +137,4 @@ myVehicle(vehicleOne)
 function myVehicle({ model, registration: { state } }) {
   const message = 'My ' + model + ' is registered in ' + state + '.';
 }
-
-
  -->

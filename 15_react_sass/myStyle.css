@@ -1,0 +1,8 @@
+.title-2 {
+  color: red;
+}
+.title-2:hover {
+  padding: 15px;
+  background-color: red;
+  color: white;
+}/*# sourceMappingURL=myStyle.css.map */

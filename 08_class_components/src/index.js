@@ -3,8 +3,9 @@ import React from "react";
 import ReactDOM from "react-dom"; 
 import Airplane from "./Airplane";
 
-// Class componnent 
 
+
+// Class componnent 
 class Car extends React.Component {
   render() {
     return <h2>Hi, I am a Car!</h2>;
@@ -17,8 +18,8 @@ ReactDOM.render( <Car/>, document.getElementById("root-1") );
 // Component Constructor
 
 class Car2 extends React.Component {
-  constructor(prop) {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {color: "red"};
   }
   render() {
@@ -33,7 +34,7 @@ ReactDOM.render( <Car2/>, document.getElementById("root-2") );
 
 class Car3 extends React.Component {
   render() {
-    return <h2>I am a  <span style={{color: this.props.color}}> Car !</span></h2>;
+    return <h2>I am a <span style={{color: this.props.color}}> Car !</span></h2>;
   }
 }
 

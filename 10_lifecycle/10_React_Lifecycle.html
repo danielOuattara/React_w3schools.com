@@ -10,10 +10,14 @@ React Tutorial : https://www.w3schools.com/react/
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Lifecycle</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
 
     <h1>React Lifecycle.</h1><hr/>
+    <div id="root"></div>
 
 
 <!--Lifecycle of Components
@@ -41,8 +45,8 @@ a component:
 3- 'render()'
 4- 'componentDidMount()'
 
-The render() method is required and will always be called, the others are optional 
-and will be called if you define them.
+The render() method is required and will always be called, the others are 
+optional and will be called if you define them.
 
 
 constructor() method
@@ -61,26 +65,26 @@ its parent (React.Component).
 Example: The constructor method is called, by React, every time you make a component: 
 -------                                                                           -->
 
-      <script>
-          class Header extends React.Component {
-              constructor (props) {
-                  super(props);
-                  this.state = {
-                      color : "red",
-                      fontSize : "15px",
-                      backgroundColor : "rgb(20, 80, 220)"
-                  }  
-              }
+    <script type="text/babel">
+        // class Header extends React.Component {
+        //     constructor (props) {
+        //         super(props);
+        //         this.state = {
+        //             color : "red",
+        //             fontSize : "15px",
+        //             backgroundColor : "rgb(20, 80, 220)"
+        //         }  
+        //     }
 
-              render () {
-                  return(
-                      <h2>My favorite color is {this.state.color} </h2>
-                  );
-              }
-          }
+        //     render () {
+        //         return(
+        //             <h2>My favorite color is {this.state.color} </h2>
+        //         );
+        //     }
+        // }
 
-          ReactDOM.render(<Header />, document.getElementById('root'));
-      </script>
+        // ReactDOM.render(<Header />, document.getElementById('root'));
+    </script>
 
 
 <!-- getDerivedStateFromProps() method
@@ -100,24 +104,22 @@ based on the favcol attribute:
 Example: The 'getDerivedStateFromProps()' method is called right before the 
 -------  render method:                                               -->
 
-      <script>
-          class Car extends React.Component {
+      <script type="text/babel">
+        // class Car extends React.Component {
+        //     constructor(props) {
+        //         super(props);
+        //         this.state = {favoriteColor: "red"};
+        //     }
 
-              constructor(props) {
-                  super(props);
-                  this.state = {favoriteColor: "red"};
-              }
+        //     static getDerivedStateFromProps( props, state) {
+        //         return {favoriteColor: props.favColor};
+        //     }
 
-              static getDerivedStateFromProps( props, state) {
-                  return {favoriteColor: props.favColor};
-              }
-
-              render () {
-                  return <h1> My favorite  car color is { this.favoriteColor }</h1>;
-              }
-          }
-
-          ReactDOM.render(< Car favColor="Yellow" />, document.getElementById('root'));
+        //     render () {
+        //         return <h1> My favorite car color is { this.state.favoriteColor }</h1>;
+        //     }
+        // }
+        //   ReactDOM.render(< Car favColor="Yellow" />, document.getElementById('root'));
       </script>
 
 
@@ -130,19 +132,17 @@ The 'render()' method is required, and is the method that actual outputs HTML to
 Example: A simple component with a simple 'render()' method: 
 --------                                                                           -->
 
-      <script>
-          class Header extends React.Component {
+    <script type="text/babel">
+    // class Header extends React.Component {
+    //     render() {
+    //         return (
+    //             <h1>This is the content of the Header component</h1>
+    //         );
+    //     }
+    // }
+    // ReactDOM.render(<Header />, document.getElementById('root'));
 
-            render() {
-                return (
-                <h1>This is the content of the Header component</h1>
-                );
-            }
-         }
-
-           ReactDOM.render(<Header />, document.getElementById('root'));
-
-      </script>
+    </script>
 
 
 <!-- componentDidMount () method
@@ -155,29 +155,32 @@ placed in the DOM.
 Example: At first my favorite color is red, but 1 second later, it becomes 
 -------  yellow instead:                                                   -->
 
-      <script>
-          class Header extends React.Component {
-              constructor (props) {
-                  super(props);
-                  this.state = {
-                      favoriteColor: "red",
-                      padding : "20px"
-                  }
-              }
+    <script type="text/babel">
+        // class Header extends React.Component {
+        //     constructor (props) {
+        //         super(props);
+        //         this.state = {
+        //             favoriteColor: "red",
+        //             padding : "20px",
+        //             color : ''
+        //         }
+        //     }
 
-              render() {
-                  return <h1> My favorite color is { this.state.favoriteColor} </h1>;
-              }
+        //     render() {
+        //         return <h1> My favorite color is <span style={{color: this.state.color}}> {this.state.favoriteColor} </span></h1>;
+        //     }
 
-              componentDidMount() {
-                setTimeout( () => { this.setState({favoriteColor: "yellow"}) }, 1000 )
+        //     componentDidMount() {
+        //         setTimeout(() => { this.setState({
+        //             favoriteColor: "orange",
+        //             color: "orange"
+        //         })}, 2000 )
+        //     }
+        // }
 
-               }
-           }
+        // ReactDOM.render(<Header />, document.getElementById('root'));
 
-           ReactDOM.render(<Header />, document.getElementById('root'));
-
-      </script>
+    </script>
 
 
 <!-- Updating
@@ -214,38 +217,36 @@ rendered as yellow:
 Example: If the component gets updated, the 'getDerivedStateFromProps()' method is called: 
 --------                                                                                -->
 
-      <script>
-        class Header extends React.Component {
-            constructor (props) {
-                super(props);
-                this.state = {
-                 color: "Red",
-                 padding : "20px"
-                 }
-             }
+      <script type="text/babel">
+        // class Header extends React.Component {
+        //     constructor (props) {
+        //         super(props);
+        //         this.state = {
+        //             color: "Red",
+        //             padding : "20px"
+        //         }
+        //     }
 
-             changeColor = () => {
-                this.setState({color: "Blue"});
-             }
+        //     changeColor = () => {
+        //         this.setState({color: "Blue"});
+        //     }
 
-             static getDerivedStateFromProps(props, state) {
-              return {color: props.otherColor};
+        //     static getDerivedStateFromProps(props, state) {
+        //         return {color: props.otherColor};
+        //     }
 
-            }
+        //     render() {
+        //        return (
+        //            <div>
+        //                <h1> My favorite color is { this.state.color} </h1>
+        //               <button type="button" onClick={ this.changeColor }>
+        //                  Click to change color</button>
+        //              </div>
+        //         );
+        //     }   
+        // }
 
-            render() {
-               return (
-                   <div>
-                       <h1> My favorite color is { this.state.color} </h1>
-                      <button type="button" onClick={ this.changeColor }>
-                         Click to change color</button>
-                     </div>
-                );
-            }   
-
-        }
-
-        ReactDOM.render(<Header otherColor="White" />, document.getElementById('root'));
+        // ReactDOM.render(<Header otherColor="White" />, document.getElementById('root'));
 
       </script>
 
@@ -264,18 +265,19 @@ The example below shows what happens when the shouldComponentUpdate() method
 Example: Stop the component from rendering at any update:
 --------                                                                                -->
 
-     <script>
-         class Header extends React.Component {
+    <script type="text/babel">
+        class Header extends React.Component {
             constructor (props) {
                 super (props);
                 this.state = {
-                color: "Red",
-                textAlign: "justify"
+                    color: "Red",
+                    textAlign: "justify"
                 };
             }
 
             shouldComponentUpdate () {
                 return false;
+                // return true;
             }
 
             changeColor = () => {
@@ -291,59 +293,23 @@ Example: Stop the component from rendering at any update:
                 );
             }
         }
+        ReactDOM.render(<Header otherColor="White" />, document.getElementById('root'));
 
- ReactDOM.render(<Header otherColor="White" />, document.getElementById('root'));
-
-
-
-/* shouldComponentUpdate() method (true) (default) */
-
-class Header extends React.Component {
-  constructor (props) {
-    super (props);
-    this.state = {
-      color: "Red",
-      textAlign: "justify"
-    };
-  }
-
-  shouldComponentUpdate () {
-    return true;
-  }
-
-  changeColor = () => {
-    this.setState ( {color: "Blue"});
-  }
-
-  render () {
-    return (
-      <div>
-        <h2> My favorite color is { this.state.color }</h2>
-        <button type="button" onClick={ this.changeColor } >Click to change</button>
-      </div>
-    );
-  }
-}
-
- ReactDOM.render(<Header otherColor="White" />, document.getElementById('root'));
-
-
-     </script>
-
-
+    </script>
 
 <!-- render() method
 -----------------------
 
-The 'render()' method is of course called when a component gets updated, it has 
-to re-render the HTML to the DOM, with the new changes.
+The 'render()' method is of course called again when a component 
+gets updated, it has to re-render the HTML to the DOM, with the 
+new changes.
 
 The example below has a button that changes the favorite color to Blue: 
 
 Example: Click the button to make a change in the component's state:
 --------                                                                         -->
 
-      <script>
+      <script type="text/babel">
           class Header extends React.Component {
 
                 constructor(props) {
@@ -351,17 +317,16 @@ Example: Click the button to make a change in the component's state:
                     this.state = {favoritecolor: "red"};
                 }
 
-
                 changeColor = () => {
                     this.setState({favoritecolor: "blue"});
                 }
 
                 render() {
                     return (
-                    <div>
-                    <h1>My Favorite Color is {this.state.favoritecolor}</h1>
-                    <button type="button" onClick={this.changeColor}>Change color</button>
-                    </div>
+                        <div>
+                            <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+                            <button type="button" onClick={this.changeColor}>Change color</button>
+                        </div>
                     );
                 }
           }
@@ -385,14 +350,72 @@ The example below might seem complicated, but all it does is this:
  - When the component has been mounted, a timer changes the state, and after one 
    second, the favorite color becomes "yellow".
 
-This action triggers the update phase, and since this component has a getSnapshotBeforeUpdate() method, this method is executed, and writes a message to the empty DIV1 element.
+This action triggers the update phase, and since this component has a 
+getSnapshotBeforeUpdate() method, this method is executed, and writes 
+a message to the empty DIV1 element.
 
-Then the componentDidUpdate() method is executed and writes a message in the empty DIV2 element:
+Then the componentDidUpdate() method is executed and writes a message in 
+the empty DIV2 element:
 
  
 Example:
 
-Use the getSnapshotBeforeUpdate() method to find out what the state object looked like before the update: -->
+Use the getSnapshotBeforeUpdate() method to find out what the state object 
+looked like before the update:   -->
+
+
+
+
+<!-- Unmounting
+===================
+
+The next phase in the lifecycle is when a component is removed from the DOM, 
+or 'unmounting' as React likes to call it.
+
+React has only one built-in method that gets called when a component is unmounted:
+    'componentWillUnmount()'
+
+componentWillUnmount
+----------------------
+The componentWillUnmount method is called when the component is about 
+to be removed from the DOM. -->
+
+<script type="text/babel">
+
+    class Header extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {show: true};
+      }
+      delHeader = () => {
+        this.setState({show: false});
+      }
+      render() {
+        let myheader;
+        if (this.state.show) {
+          myheader = <Child />;
+        };
+        return (
+          <div>
+            {myheader}
+            <button type="button" onClick={this.delHeader}>Delete Header</button>
+          </div>
+        );
+      }
+    }
+    class Child extends React.Component {
+      componentWillUnmount() {
+        alert("The component named Header is about to be unmounted.");
+      }
+      render() {
+        return (
+          <h1>Hello World!</h1>
+        );
+      }
+    }
+    ReactDOM.render(<Header />, document.getElementById('root'));
+</script>
+
 
 </body>
 </html>
